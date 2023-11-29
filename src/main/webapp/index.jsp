@@ -7,11 +7,11 @@
 <body>
 <h1><%= "Hello World!" %>
     <form action="controller" method="POST">
-        Username:<input type="text" name="username"/>
+        <label for="username">Username:</label><input type="text" id=username name="username" required/>
+        <label for="password">Password:</label><input type="password" id="password" name="password" required/>
         <button type="submit" value="Submit">aef</button>
+        <input type ="hidden" name="action" value="login">
     </form>
 </h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
 </body>
 </html>
