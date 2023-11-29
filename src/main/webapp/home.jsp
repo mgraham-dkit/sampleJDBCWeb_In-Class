@@ -8,15 +8,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Home</title>
+    <title>User Home Page</title>
 </head>
 <body>
   <%
-    User u = (User) session.getAttribute("loggedInUser");
-    if(u == null){
-      response.sendRedirect("error.jsp");
+    // Get the user object from the session
+    User user = (User) session.getAttribute("loggedInUser");
+    // If the user has successfully logged in (and their session hasn't expired yet)
+    // Then display a greeting to them
+    if(user != null){
+  %>
+  <h1>Welcome, <%=user.getUsername()%></h1>
+  <%
+    }
+    // Otherwise, redirect them to the login page and tell them to try again
+    else{
+      String sessionExpired = "Your session has expired, please log in again.";
+      session.setAttribute("sessionExpired", sessionExpired);
+      response.sendRedirect("index.jsp");
     }
   %>
-  <p>Hi, <%=u.getUsername()%>!</p>
+  <div></div>
+  <a href="controller?action=logout">Logout</a>
 </body>
 </html>
